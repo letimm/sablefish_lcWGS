@@ -1,2 +1,0 @@
-1:female:/home/ltimm/Anoplopoma_fimbria/Afim_female_bams.txt:28
-2:male:/home/ltimm/Anoplopoma_fimbria/Afim_male_bams.txt:21

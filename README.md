@@ -62,12 +62,12 @@ Results were visualized with R scripts on a cluster (which is why there is a she
 
 | clusters | r script | wrapper |
 | ------ | ------ | ------ |
-| A | [fst_genomescan_clusters-A.R] | Afim_genomescanFIG_clusters-A.sh] |
-| B | [fst_genomescan_clusters-B.R] | Afim_genomescanFIG_clusters-B.sh] |
-| C | [fst_genomescan_clusters-C.R] | Afim_genomescanFIG_clusters-C.sh] |
-| D | [fst_genomescan_clusters-D.R] | Afim_genomescanFIG_clusters-D.sh] |
-| E | [fst_genomescan_clusters-E.R] | Afim_genomescanFIG_clusters-E.sh] |
-| F | [fst_genomescan_clusters-F.R] | Afim_genomescanFIG_clusters-F.sh] |
+| A | [fst_genomescan_clusters-A.R] | [Afim_genomescanFIG_clusters-A.sh] |
+| B | [fst_genomescan_clusters-B.R] | [Afim_genomescanFIG_clusters-B.sh] |
+| C | [fst_genomescan_clusters-C.R] | [Afim_genomescanFIG_clusters-C.sh] |
+| D | [fst_genomescan_clusters-D.R] | [Afim_genomescanFIG_clusters-D.sh] |
+| E | [fst_genomescan_clusters-E.R] | [Afim_genomescanFIG_clusters-E.sh] |
+| F | [fst_genomescan_clusters-F.R] | [Afim_genomescanFIG_clusters-F.sh] |
 
 | sex | r script | wrapper |
 | ------ | ------ | ------ |

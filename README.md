@@ -52,6 +52,7 @@ In addition to the two schemes listed above, samples from Washington State were 
 | regions | BSAI, wGOA,eGOA, south | [Afim-regions_popARRAY.sh] |
 | clusters | A, B, C, D, E, F | [Afim-clusters_popARRAY.sh] |
 | sex | male, female | [Afim-sex_popARRAY.sh] |
+
 These scripts take [Afim_angsdARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_angsdARRAY_input.txt) as array input.
 
 [Afim_summaryFST-pt1_ARRAY_input-regions.txt]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_summaryFST-pt1_ARRAY_input-regions.txt>

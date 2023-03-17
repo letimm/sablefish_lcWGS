@@ -35,7 +35,7 @@ PCAs were visualized with [plot_pca.R](https://github.com/letimm/sablefish_lcWGS
 Individuals were organized in two ways that were informative for the research questions: by region (Bering Sea and Aleutian Islands - BSAI, western Gulf of Alaska - wGOA, eastern Gulf of Alaska - eGOA, and the Washington State coast - south) and by cluster (A-F representing the six clusters in the whole genome PCA, from left to right).
 _FST_ values were calculated for all population pairs within these schemes using [Afim_summaryFST-pt1_ARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_summaryFST-pt1_ARRAY.sh) and [Afim_summaryFST-pt2_ARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_summaryFST-pt2_ARRAY.sh). 
 Within each script, an array file specifies the populations and population pairs.
-| Scheme | groups | pt1 array | pt2 array |
+| scheme | groups | pt1 array | pt2 array |
 | ------ | ------ | ------ | ------ |
 | regions | BSAI, wGOA,eGOA, south | [Afim_summaryFST-pt1_ARRAY_input-regions.txt] | [Afim_summaryFST-pt2_ARRAY_input-regions.txt] |
 | clusters | A, B, C, D, E, F | [Afim_summaryFST-pt1_ARRAY_input-clusters.txt] | [Afim_summaryFST-pt2_ARRAY_input-clusters.txt] |
@@ -45,8 +45,21 @@ To examine the statistical significance of the calculated _FST_ values, I ran a 
 Distributions were generated with [Afim-regions_fst_posterior.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-regions_fst_posterior.sh) and [Afim-clusters_fst_posterior.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-clusters_fst_posterior.sh).
 Significance was tested with [Afim-regions_fst_sig_test_wrapper.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-regions_fst_sig_test_wrapper.sh) and [Afim-clusters_fst_sig_test_wrapper.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-clusters_fst_sig_test_wrapper.sh) (these scripts call [fst_significance_test.py](https://github.com/letimm/WGSfqs-to-genolikelihoods/blob/main/fst_significance_test.py)).
 
+### Genome scan
+In addition to the two schemes listed above, samples from Washington State were sexed, allowing for analysis of males vs females.
+| scheme | groups | scan array |
+| ------ | ------ | ------ |
+| regions | BSAI, wGOA,eGOA, south | [Afim-regions_popARRAY.sh] |
+| clusters | A, B, C, D, E, F | [Afim-clusters_popARRAY.sh] |
+| sex | male, female | [Afim-sex_popARRAY.sh] |
+These scripts take [Afim_angsdARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_angsdARRAY_input.txt) as array input.
 
 [Afim_summaryFST-pt1_ARRAY_input-regions.txt]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_summaryFST-pt1_ARRAY_input-regions.txt>
 [Afim_summaryFST-pt2_ARRAY_input-regions.txt]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_summaryFST-pt2_ARRAY_input-regions.txt>
 [Afim_summaryFST-pt1_ARRAY_input-clusters.txt]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_summaryFST-pt1_ARRAY_input-clusters.txt>
 [Afim_summaryFST-pt2_ARRAY_input-clusters.txt]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_summaryFST-pt2_ARRAY_input-clusters.txt>
+[Afim-regions_popARRAY.sh]:
+<https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-regions_popARRAY.sh>
+[Afim-clusters_popARRAY.sh]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-clusters_popARRAY.sh>
+[Afim-sex_popARRAY.sh]:
+<https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-sex_popARRAY.sh>

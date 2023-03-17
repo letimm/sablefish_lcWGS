@@ -1,0 +1,6 @@
+1:A:/home/ltimm/Anoplopoma_fimbria/Afim_A_bams.txt:17
+2:B:/home/ltimm/Anoplopoma_fimbria/Afim_B_bams.txt:29
+3:C:/home/ltimm/Anoplopoma_fimbria/Afim_C_bams.txt:30
+4:D:/home/ltimm/Anoplopoma_fimbria/Afim_D_bams.txt:6
+5:E:/home/ltimm/Anoplopoma_fimbria/Afim_E_bams.txt:17
+6:F:/home/ltimm/Anoplopoma_fimbria/Afim_F_bams.txt:19

@@ -1,0 +1,6 @@
+1:BSAI:eGOA
+2:BSAI:south
+3:BSAI:wGOA
+4:eGOA:south
+5:eGOA:wGOA
+6:south:wGOA

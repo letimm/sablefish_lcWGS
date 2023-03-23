@@ -96,6 +96,7 @@ First, I pulled these regions from the full dataset. Then I conducted PCAs for e
 
 The linkage scripts require [ldplot_general.R](https://github.com/letimm/sablefish_lcWGS/blob/main/plotting/ldplot_general.R) to plot the output.
 
+The majority of the R scripts listed here were developed by Sara Schaal.
 
 [Afim_summaryFST-pt1_ARRAY_input-regions.txt]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_summaryFST-pt1_ARRAY_input-regions.txt>
 [Afim_summaryFST-pt2_ARRAY_input-regions.txt]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_summaryFST-pt2_ARRAY_input-regions.txt>

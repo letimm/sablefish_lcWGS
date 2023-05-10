@@ -28,15 +28,15 @@ Specify 1) the tsv file containing the coverage values (generally, this is gener
 
 ```{r project_setup}
 
-MALE_DATAFILE <- "C:/Users/laura.timm/Desktop/Anoplopoma_fimbria/chr17_peak/gsdf_depths_male_nofilter.txt"
+MALE_DATAFILE <- "C:/Users/laura.timm/Desktop/Anoplopoma_fimbria/chr14_peak/gsdf_depths_male_nofilter.txt"
 MALE_N <- 45
 
-FEMALE_DATAFILE <- "C:/Users/laura.timm/Desktop/Anoplopoma_fimbria/chr17_peak/gsdf_depths_female_nofilter.txt"
+FEMALE_DATAFILE <- "C:/Users/laura.timm/Desktop/Anoplopoma_fimbria/chr14_peak/gsdf_depths_female_nofilter.txt"
 FEMALE_N <- 74
 
 WINSIZE <- 100
 #CHROM_AVG_DEPTH <- 392.63
-OUTFILE <- "C:/Users/laura.timm/Desktop/Anoplopoma_fimbria/chr17_peak/gsdf_depths_bysex_nofilter_sliding-window"
+OUTFILE <- "C:/Users/laura.timm/Desktop/Anoplopoma_fimbria/chr14_peak/gsdf_depths_bysex_nofilter_sliding-window"
 
 ```
 

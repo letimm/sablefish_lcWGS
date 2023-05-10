@@ -1,0 +1,124 @@
+---
+title: "coverage_sliding_window"
+author: "laura e timm"
+date: '2023-04-12'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+
+This script performs a sliding window analysis of coverage across a genomic region and plots the result
+
+```{r load_libraries}
+packages_needed <- c("runner", "dplyr", "ggplot2", "RColorBrewer")
+
+for(i in 1:length(packages_needed)){
+  if(!(packages_needed[i] %in% installed.packages())){install.packages(packages_needed[i])}
+  library(packages_needed[i], character.only = TRUE)
+}
+```
+
+## Setup
+
+Specify 1) the tsv file containing the coverage values (generally, this is generated with angsd using -dumpCounts 1 for the region of interest; the file is formatted <chr>\t\<pos\>\t\<coverage\>) 2) the size of the sliding window 3) the average depth for the entire chromosome (calculated with awk on sedna)? 4) the sample size (to normalize to depth per individual) 5) the directory for output
+
+```{r project_setup}
+
+MALE_DATAFILE <- "C:/Users/laura.timm/Desktop/Anoplopoma_fimbria/chr17_peak/gsdf_depths_male_nofilter.txt"
+MALE_N <- 45
+
+FEMALE_DATAFILE <- "C:/Users/laura.timm/Desktop/Anoplopoma_fimbria/chr17_peak/gsdf_depths_female_nofilter.txt"
+FEMALE_N <- 74
+
+WINSIZE <- 100
+#CHROM_AVG_DEPTH <- 392.63
+OUTFILE <- "C:/Users/laura.timm/Desktop/Anoplopoma_fimbria/chr17_peak/gsdf_depths_bysex_nofilter_sliding-window"
+
+```
+
+## Read in data
+
+```{r prepare_data}
+
+depths_male <- read.csv(MALE_DATAFILE, header = TRUE, sep = '\t')
+colnames(depths_male) <- c("chr", "pos", "depth")
+depths_male <- depths_male %>%
+  mutate(depth_by_ind = depth / MALE_N)
+depths_male$sex <- rep("male")
+
+depths_female <- read.csv(FEMALE_DATAFILE, header = TRUE, sep = '\t')
+colnames(depths_female) <- c("chr", "pos", "depth")
+depths_female <- depths_female %>%
+  mutate(depth_by_ind = depth / FEMALE_N)
+depths_female$sex <- rep("female")
+
+depths <- rbind(depths_female, depths_male)
+
+```
+
+## Perform sliding window analysis (mean coverage)
+
+```{r sliding_window}
+
+depth_avgs <- runner::runner(
+  x = depths_male$depth_by_ind,
+  k = WINSIZE,
+  f = mean
+)
+
+depths_male$win_avg <- depth_avgs
+plotting_depths_male <- tail(depths_male, -WINSIZE)
+
+depth_avgs <- runner::runner(
+  x = depths_female$depth_by_ind,
+  k = WINSIZE,
+  f = mean
+)
+
+depths_female$win_avg <- depth_avgs
+plotting_depths_female <- tail(depths_female, -WINSIZE)
+
+plotting_depths <- rbind(plotting_depths_female, plotting_depths_male)
+
+```
+
+## Plot the output
+
+```{r plotting}
+
+theme_set(
+  theme( 
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    axis.text.x = element_text(angle = 90, size = 10, vjust = 0.5),
+    axis.text.y = element_text(angle = 0, size = 10),
+    panel.background = element_rect(fill = "white"), 
+    panel.spacing = unit(0,"lines"),
+    strip.text.y = element_text(angle = 0) 
+  )
+)
+
+ggplot(plotting_depths, aes(x = pos, y = win_avg)) +
+  geom_rect(aes(xmin=12119312, xmax=12119828, ymin=-Inf, ymax=Inf), fill = "gray88") +
+#  geom_rect(aes(xmin=12120639, xmax=12121576, ymin=-Inf, ymax=Inf), fill = "gray88") +
+  geom_line(aes(color = sex)) +
+  geom_hline(yintercept = mean(depths_male$depth_by_ind), colour = "cadetblue") +
+  geom_hline(yintercept = mean(depths_female$depth_by_ind), colour = "maroon") +
+  scale_color_manual(values = c("maroon", "cadetblue")) +
+  xlab("position") +
+  ylab("mean depth") +
+  ggtitle(paste0("Average depth over gsdf (sliding window size ", WINSIZE, ")"))
+  
+```
+
+## Export the plot
+
+```{r save_plot}
+
+ggsave(paste0(OUTFILE, WINSIZE, ".tiff"), units = "in", width = 12, height = 6, compression = "lzw", dpi = 300)
+
+```

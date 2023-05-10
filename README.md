@@ -1,7 +1,7 @@
 # The Sablefish (_Anoplopoma fimbria_) Workflow:  assembly, analysis, and visualization/graphing
 
 ## Assembly
-### Index the [reference genome](https://ftp.ncbi.nlm.nih.gov/genomes/genbank/vertebrate_other/Anoplopoma_fimbria/latest_assembly_versions/GCA_027596085.2_Afim_UVic_2022/GCA_027596085.2_Afim_UVic_2022_genomic.fna.gz)
+### Index the [reference genome](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/027/596/085/GCF_027596085.1_Afim_UVic_2022/GCF_027596085.1_Afim_UVic_2022_genomic.fna.gz)
 The reference genome was prepared with a pair of scripts: [GCA_027596085.1_Afim_UVic_2022_genomic_bwa-indexSLURM.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/GCA_027596085.1_Afim_UVic_2022_genomic_bwa-indexSLURM.sh) and [GCA_027596085.1_Afim_UVic_2022_genomic_faiSLURM.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/GCA_027596085.1_Afim_UVic_2022_genomic_faiSLURM.sh).
 
 ### Prepare the raw fastqs

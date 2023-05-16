@@ -1,0 +1,6 @@
+1:A:/home/ltimm/Anoplopoma_fimbria/Afim2-clusters_A_bams.txt:18
+2:B:/home/ltimm/Anoplopoma_fimbria/Afim2-clusters_B_bams.txt:29
+3:C:/home/ltimm/Anoplopoma_fimbria/Afim2-clusters_C_bams.txt:30
+4:D:/home/ltimm/Anoplopoma_fimbria/Afim2-clusters_D_bams.txt:6
+5:E:/home/ltimm/Anoplopoma_fimbria/Afim2-clusters_E_bams.txt:17
+6:F:/home/ltimm/Anoplopoma_fimbria/Afim2-clusters_F_bams.txt:19

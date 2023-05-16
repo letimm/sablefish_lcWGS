@@ -1,0 +1,4 @@
+1:BSAI:/home/ltimm/Anoplopoma_fimbria/Afim2-4regions_BSAI_bams.txt:25
+2:eGOA:/home/ltimm/Anoplopoma_fimbria/Afim2-4regions_eGOA_bams.txt:28
+3:south:/home/ltimm/Anoplopoma_fimbria/Afim2-4regions_south_bams.txt:49
+4:wGOA:/home/ltimm/Anoplopoma_fimbria/Afim2-4regions_wGOA_bams.txt:17

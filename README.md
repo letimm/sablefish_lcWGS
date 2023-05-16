@@ -12,45 +12,45 @@ After these ran, quality was checked for individual trimmed fastqs with [Afim2-t
 After this script ran, results were collated with [Afim2-trim_multiqcSLURM.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2-trim_multiqcSLURM.sh)
 
 ### Alignment
-Trimmed fastqs were aligned to the reference genome, reads sorted, duplicates removed, and overlaps clipped with the single script [Afim_alignARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_alignARRAY.sh) with the array input [Afim_alignARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_alignARRAY_input.txt).
-Prior to genotype likelihood calculations, mean alignment depth was calculated for each individual with [Afim_depthsARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_depthsARRAY.sh) and the array input [Afim_depthsARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_depthsARRAY_input.txt). Depth calculation requires [mean_cov_ind.py](https://github.com/letimm/WGSfqs-to-genolikelihoods/blob/main/mean_cov_ind.py).
+Trimmed fastqs were aligned to the reference genome, reads sorted, duplicates removed, and overlaps clipped with the single script [Afim2_alignARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_alignARRAY.sh) with the array input [Afim2_alignARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_alignARRAY_input.txt).
+Prior to genotype likelihood calculations, mean alignment depth was calculated for each individual with [Afim2_depthsARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_depthsARRAY.sh) and the array input [Afim2_depthsARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_depthsARRAY_input.txt). Depth calculation requires [mean_cov_ind.py](https://github.com/letimm/WGSfqs-to-genolikelihoods/blob/main/mean_cov_ind.py).
 Mean depths were visualized with [mean_depths_byInd.R](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/mean_depths_byInd.R) and three individuals fell below the mean depth threshold of 1x (ABLG1671, ABLG1816, ABLG1836) and were blacklisted from genotype likelihood calculation.
 
 ### Calculate genotype likelihoods
-Genotype likelihoods were calculated across all polymorphic sites with [Afim_polymorphicARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_polymorphicARRAY.sh) and across all sites with [Afim_globalARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_globalARRAY.sh). Both scripts ran with the array input [Afim_angsdARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_angsdARRAY_input.txt).
-As the output of these scripts are genotype likelihoods for each chromosome individually, data were concatenated to generate a whole genome dataset. [Afim_concatenate_beagles.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_concatenate_beagles.sh) joined likelihood data.
-[Afim_concatenate_mafs.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_concatenate_mafs.sh) joined MAF data.
+Genotype likelihoods were calculated across all polymorphic sites with [Afim2_polymorphicARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_polymorphicARRAY.sh) and across all sites with [Afim2_globalARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_globalARRAY.sh). Both scripts ran with the array input [Afim2_angsdARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_angsdARRAY_input.txt).
+As the output of these scripts are genotype likelihoods for each chromosome individually, data were concatenated to generate a whole genome dataset. [Afim2_concatenate_beagles.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_concatenate_beagles.sh) joined likelihood data.
+[Afim2_concatenate_mafs.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_concatenate_mafs.sh) joined MAF data.
 
 ## Analyses
 ### PCA
 I generated a PCA for the whole genome with [Afim_wholegenome_pcangsd.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_wholegenome_pcangsd.sh). Two outliers (ABLG1633 and ABLG1634) were determined to be a duplicated sample, so I re-ran the PCA with one outlier (ABLG1633) removed with [Afim_wholegenome_pcangsd-keep119.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_wholegenome_pcangsd-keep119.sh). As this resolved the issue, I re-ran steps 6 and 7 above with ABLG1633 excluded.
-Six clusters remained in the PCA. To clarify where this signal came from within the genome, I ran a PCA for every chromosome with [Afim_pcangsdARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_pcangsdARRAY.sh) which ran over the array [Afim_pcangsdARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_pcangsdARRAY_input.txt).
-Signal came from chromosome 22. A new "whole genome" beagle file was generated by concatenating likelihood data from all chromosomes **except** chromosome 22 with [Afim_concatenate_beagles-nix22.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_concatenate_beagles-nix22.sh) and a new PCA was generated ([Afim_wholegenome_pcangsd-nix22.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_wholegenome_pcangsd-nix22.sh)).
+Six clusters remained in the PCA. To clarify where this signal came from within the genome, I ran a PCA for every chromosome with [Afim_pcangsdARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_pcangsdARRAY.sh) which ran over the array [Afim2_pcangsdARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_pcangsdARRAY_input.txt).
+Signal came from chromosome 22. A new "whole genome" beagle file was generated by concatenating likelihood data from all chromosomes **except** chromosome 22 with [Afim2_concatenate_beagles-nix22.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_concatenate_beagles-nix22.sh) and a new PCA was generated ([Afim2_wholegenome_pcangsd-nix22.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_wholegenome_pcangsd-nix22.sh)).
 PCAs were visualized with [pcangsd_graph.R](https://github.com/letimm/sablefish_lcWGS/blob/main/plotting/pcangsd_graph.R).
 
 ### Population-level _FST_
 Individuals were organized in two ways that were informative for the research questions: by region (Bering Sea and Aleutian Islands - BSAI, western Gulf of Alaska - wGOA, eastern Gulf of Alaska - eGOA, and the Washington State coast - south) and by cluster (A-F representing the six clusters in the whole genome PCA, from left to right).
-_FST_ values were calculated for all population pairs within these schemes using [Afim_summaryFST-pt1_ARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_summaryFST-pt1_ARRAY.sh) and [Afim_summaryFST-pt2_ARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_summaryFST-pt2_ARRAY.sh). 
+_FST_ values were calculated for all population pairs within these schemes using [Afim2_summaryFST-pt1_ARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_summaryFST-pt1_ARRAY.sh) and [Afim2_summaryFST-pt2_ARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_summaryFST-pt2_ARRAY.sh). 
 Within each script, an array file specifies the populations and population pairs.
 | scheme | groups | pt1 array | pt2 array |
 | ------ | ------ | ------ | ------ |
-| regions | BSAI, wGOA, eGOA, south | [Afim_summaryFST-pt1_ARRAY_input-regions.txt] | [Afim_summaryFST-pt2_ARRAY_input-regions.txt] |
-| clusters | A, B, C, D, E, F | [Afim_summaryFST-pt1_ARRAY_input-clusters.txt] | [Afim_summaryFST-pt2_ARRAY_input-clusters.txt] |
+| regions | BSAI, wGOA, eGOA, south | [Afim2_summaryFST-pt1_ARRAY_input-regions.txt] | [Afim2_summaryFST-pt2_ARRAY_input-regions.txt] |
+| clusters | A, B, C, D, E, F | [Afim2_summaryFST-pt1_ARRAY_input-clusters.txt] | [Afim2_summaryFST-pt2_ARRAY_input-clusters.txt] |
 
 To examine the statistical significance of the calculated _FST_ values, I ran a permutation test for every population pair. Briefly, given the four populations BSAI (n = 25), wGOA (n = 17), eGOA (n = 28), and south (n = 49), for each permutation all 119 individuals are randomly shuffled into these four populations, maintaining sample sizes. Pairwise population-level _FST_ values are calculated for this new arrangement of individuals. After the permutations have concluded and we have a distribution of _FST_ values for each population pair, we calculate the mean of each distribution and use it to estimate the cumulative distribution function (CDF) of the _FST_ result for the population pair under an exponential distribution. P-val is estimated as 1 - CDF.
 
-Distributions were generated with [Afim-regions_fst_posterior.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-regions_fst_posterior.sh) and [Afim-clusters_fst_posterior.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-clusters_fst_posterior.sh).
-Significance was tested with [Afim-regions_fst_sig_test_wrapper.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-regions_fst_sig_test_wrapper.sh) and [Afim-clusters_fst_sig_test_wrapper.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-clusters_fst_sig_test_wrapper.sh) (these scripts call [fst_significance_test.py](https://github.com/letimm/WGSfqs-to-genolikelihoods/blob/main/fst_significance_test.py)).
+Distributions were generated with [Afim2-regions_fst_posterior.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2-regions_fst_posterior.sh) and [Afim2-clusters_fst_posterior.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2-clusters_fst_posterior.sh).
+Significance was tested with [Afim2-regions_fst_sig_test_wrapper.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2-regions_fst_sig_test_wrapper.sh) and [Afim2-clusters_fst_sig_test_wrapper.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2-clusters_fst_sig_test_wrapper.sh) (these scripts call [fst_significance_test.py](https://github.com/letimm/WGSfqs-to-genolikelihoods/blob/main/fst_significance_test.py)).
 
 ### Genome scan
 In addition to the two schemes listed above, samples from Washington State were sexed, allowing for analysis of males vs females.
 | scheme | groups | scan array |
 | ------ | ------ | ------ |
-| regions | BSAI, wGOA, eGOA, south | [Afim-regions_popARRAY.sh] |
-| clusters | A, B, C, D, E, F | [Afim-clusters_popARRAY.sh] |
-| sex | male, female | [Afim-sex_popARRAY.sh] |
+| regions | BSAI, wGOA, eGOA, south | [Afim2-4regions_popARRAY.sh] |
+| clusters | A, B, C, D, E, F | [Afim2-clusters_popARRAY.sh] |
+| sex | male, female | [Afim2-sex_popARRAY.sh] |
 
-These scripts take [Afim_angsdARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_angsdARRAY_input.txt) as array input.
+These scripts take [Afim2_angsdARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_angsdARRAY_input.txt) as array input.
 
 Results were visualized with R scripts on a cluster (which is why there is a shell for each R script).
 | regions | r script | wrapper |
@@ -83,9 +83,9 @@ The inversions and peak were investigated in more detail.
 ## Regions of Interest
 ### _gsdf_: the master sex-determining gene in sablefish
 When BLASTing the sequence associated with the peak in _FST_ values on chromosome 14 when comparing males to females, the top hits are 'Anoplopoma fimbria chromosome X putative gonadal soma-derived factor (gsdf) gene, complete cds' and 'Anoplopoma fimbria chromosome X putative gonadal soma-derived factor (gsdf) gene, complete cds' ([KC623942.1](https://www.ncbi.nlm.nih.gov/nuccore/KC623942.1) and [KC623943.1](https://www.ncbi.nlm.nih.gov/nuccore/KC623943.1), respectively).
-Initially, I examined sequencing depths along the region of interest on chr14. _gsdf_ has X-specific and Y-specific segments and the reference genome includes the X-specific sequence (not the Y-specific sequence). Because of this, we expect sequencing depth to drop along the X-specific segment. To confirm this, I counted sequencing depths along _gsdf_ with [Afim2_global_gsdf-depths_female_nofilter.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_global_gsdf-depths_female_nofilter.sh) and [Afim2_global_gsdf-depths_male_nofilter.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_global_gsdf-depths_male_nofilter.sh). To reduce the noise of basepair-by-basepair sequencing depths, I ran a 100bp sliding window analysis in R and plotted the results for males and females with [coverage_sliding_window.Rmd](https://github.com/letimm/sablefish_lcWGS/blob/main//plotting/coverage_sliding_window.Rmd).
+Initially, I examined sequencing depths along the region of interest on chr14. _gsdf_ has X-specific and Y-specific segments and the reference genome includes the X-specific sequence (not the Y-specific sequence). Because of this, we expect sequencing depth to drop along the X-specific segment. To confirm this, I counted sequencing depths along _gsdf_ with [Afim2_global_gsdf-depths_female_nofilter.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_global_gsdf-depths_female_nofilter.sh) and [Afim2_global_gsdf-depths_male_nofilter.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_global_gsdf-depths_male_nofilter.sh). To reduce the noise of basepair-by-basepair sequencing depths, I ran a 100bp sliding window analysis in R and plotted the results for males and females with [coverage_sliding_window.Rmd](https://github.com/letimm/sablefish_lcWGS/blob/main/plotting/coverage_sliding_window.Rmd).
 
-To analyze this region, I extracted it from the larger dataset with [chr14_peak.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/chr14-peak.sh), which calls [subset_pca.py](https://github.com/letimm/WGSfqs-to-genolikelihoods/blob/main/subset_pca.py) and results in a new beagle file and a script ([chr14peak_pcaSLURM.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/chr17peak_pcaSLURM.sh)) for executing a PCA of the extarcted region.
+To analyze this region, I extracted it from the larger dataset with [chr14_peak.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/chr14-peak.sh), which calls [subset_pca.py](https://github.com/letimm/WGSfqs-to-genolikelihoods/blob/main/subset_pca.py) and results in a new beagle file and a script ([chr14peak_pcaSLURM.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/chr14peak_pcaSLURM.sh)) for executing a PCA of the extarcted region.
 Finally, a genotype heatmap was plotted for the region with [genotypeHeatmap_sex.R](https://github.com/letimm/sablefish_lcWGS/blob/main/plotting/genotypeHeatmap_sex.R).
 
 ### Chromosome 16 inversions
@@ -93,8 +93,8 @@ Two large inversions were identified on chromosome 22.
 First, I pulled these regions from the full dataset. Then I conducted PCAs for each inversion and investigated linkage.
 | inversion | region (bps) | subset script | pca script | linkage script |
 | ------ | ------ | ------ | ------ | ------ |
-| inv1 | 4.13e6-8.19e6 | [chr22-inv1_4.13-8.19_0.3fst.sh] | [chr22-inv1_4.13-8.19_0.3fst_pcaSLURM.sh] | [Afim_ld_chr22-inv1.sh] |
-| inv2 | 8.97e6-11.90e6 | [chr22-inv2_8.97-11.9_0.3fst.sh] | [chr22-inv2_8.97-11.9_0.3fst_pcaSLURM.sh] | [Afim_ld_chr22-inv2.sh] |
+| inv1 | 4.13e6-8.19e6 | [chr22-inv1_4.13-8.19_0.3fst.sh] | [chr22-inv1_4.13-8.19_0.3fst_pcaSLURM.sh] | [chr22-inv1_LD.sh] |
+| inv2 | 8.97e6-11.90e6 | [chr22-inv2_8.97-11.9_0.3fst.sh] | [chr22-inv2_8.97-11.9_0.3fst_pcaSLURM.sh] | [chr22-inv2_LD.sh] |
 
 The linkage scripts require [ldplot_general.R](https://github.com/letimm/sablefish_lcWGS/blob/main/plotting/ldplot_general.R) to plot the output.
 
@@ -105,7 +105,7 @@ The majority of the R scripts listed here were developed by Sara Schaal.
 [Afim_summaryFST-pt1_ARRAY_input-clusters.txt]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_summaryFST-pt1_ARRAY_input-clusters.txt>
 [Afim_summaryFST-pt2_ARRAY_input-clusters.txt]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_summaryFST-pt2_ARRAY_input-clusters.txt>
 
-[Afim-regions_popARRAY.sh]:
+[Afim-4regions_popARRAY.sh]:
 <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-regions_popARRAY.sh>
 [Afim-clusters_popARRAY.sh]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-clusters_popARRAY.sh>
 [Afim-sex_popARRAY.sh]:

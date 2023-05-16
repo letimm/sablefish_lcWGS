@@ -41,8 +41,8 @@ _FST_ values were calculated for all population pairs within these schemes using
 Within each script, an array file specifies the populations and population pairs.
 | scheme | groups | pt1 array | pt2 array |
 | ------ | ------ | ------ | ------ |
-| regions | BSAI, wGOA, eGOA, south | [Afim2_summaryFST-pt1_ARRAY_input-regions.txt] | [Afim2_summaryFST-pt2_ARRAY_input-regions.txt] |
-| clusters | A, B, C, D, E, F | [Afim2_summaryFST-pt1_ARRAY_input-clusters.txt] | [Afim2_summaryFST-pt2_ARRAY_input-clusters.txt] |
+| regions | BSAI, wGOA, eGOA, south | [Afim2-regions_summaryFST-pt1_ARRAY_input.txt] | [Afim2-regions_summaryFST-pt2_ARRAY_input.txt] |
+| clusters | A, B, C, D, E, F | [Afim2-clusters_summaryFST-pt1_ARRAY_input.txt] | [Afim2-clusters_summaryFST-pt2_ARRAY_input.txt] |
 
 To examine the statistical significance of the calculated _FST_ values, I ran a permutation test for every population pair. Briefly, given the four populations BSAI (n = 25), wGOA (n = 17), eGOA (n = 28), and south (n = 49), for each permutation all 119 individuals are randomly shuffled into these four populations, maintaining sample sizes. Pairwise population-level _FST_ values are calculated for this new arrangement of individuals. After the permutations have concluded and we have a distribution of _FST_ values for each population pair, we calculate the mean of each distribution and use it to estimate the cumulative distribution function (CDF) of the _FST_ result for the population pair under an exponential distribution. P-val is estimated as 1 - CDF.
 

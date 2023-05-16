@@ -1,0 +1,5 @@
+pop	region
+BSAI	BSAI
+eGOA	eGOA
+south	south
+wGOA	wGOA

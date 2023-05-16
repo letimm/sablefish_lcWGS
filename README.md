@@ -53,7 +53,7 @@ Significance was tested with [Afim2-regions_fst_sig_test_wrapper.sh](https://git
 In addition to the two schemes listed above, samples from Washington State were sexed, allowing for analysis of males vs females.
 | scheme | groups | scan array |
 | ------ | ------ | ------ |
-| regions | BSAI, wGOA, eGOA, south | [Afim2-4regions_popARRAY.sh] |
+| regions | BSAI, wGOA, eGOA, south | [Afim2_popARRAY.sh] |
 | clusters | A, B, C, D, E, F | [Afim2-clusters_popARRAY.sh] |
 | sex | male, female | [Afim2-sex_popARRAY.sh] |
 
@@ -107,10 +107,10 @@ The linkage scripts require [ldplot_general.R](https://github.com/letimm/sablefi
 
 The majority of the R scripts listed here were developed by Sara Schaal.
 
-[Afim_summaryFST-pt1_ARRAY_input-regions.txt]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_summaryFST-pt1_ARRAY_input-regions.txt>
-[Afim_summaryFST-pt2_ARRAY_input-regions.txt]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_summaryFST-pt2_ARRAY_input-regions.txt>
-[Afim_summaryFST-pt1_ARRAY_input-clusters.txt]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_summaryFST-pt1_ARRAY_input-clusters.txt>
-[Afim_summaryFST-pt2_ARRAY_input-clusters.txt]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_summaryFST-pt2_ARRAY_input-clusters.txt>
+[Afim2-regions_summaryFST-pt1_ARRAY_input.txt]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2-4regions_summaryFST-pt1_ARRAY_input.txt>
+[Afim2-regions_summaryFST-pt2_ARRAY_input.txt]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2-4regions_summaryFST-pt2_ARRAY_input.txt>
+[Afim2-clusters_summaryFST-pt1_ARRAY_input.txt]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2-clusters_summaryFST-pt1_ARRAY_input.txt>
+[Afim2-clusters_summaryFST-pt2_ARRAY_input.txt]: <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2-clusters_summaryFST-pt2_ARRAY_input.txt>
 
 [Afim2_popARRAY.sh]:
 <https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_popARRAY.sh>

@@ -2,14 +2,14 @@
 
 ## Assembly
 ### Index the [reference genome](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/027/596/085/GCF_027596085.1_Afim_UVic_2022/GCF_027596085.1_Afim_UVic_2022_genomic.fna.gz)
-The reference genome was prepared with a pair of scripts: [GCA_027596085.1_Afim_UVic_2022_genomic_bwa-indexSLURM.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/GCA_027596085.1_Afim_UVic_2022_genomic_bwa-indexSLURM.sh) and [GCA_027596085.1_Afim_UVic_2022_genomic_faiSLURM.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/GCA_027596085.1_Afim_UVic_2022_genomic_faiSLURM.sh).
+The reference genome was prepared with a pair of scripts: [GCF_027596085.1_Afim_UVic_2022_genomic_bwa-indexSLURM.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/GCF_027596085.1_Afim_UVic_2022_genomic_bwa-indexSLURM.sh) and [GCF_027596085.1_Afim_UVic_2022_genomic_faiSLURM.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/GCF_027596085.1_Afim_UVic_2022_genomic_faiSLURM.sh).
 
 ### Prepare the raw fastqs
-Raw fastqs were quality-checked with FASTQC and multiQC. [Afim-raw_fastqcARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-raw_fastqcARRAY.sh) ran with the array input [Afim-raw_fqcARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-raw_fqcARRAY_input.txt).
-After this script ran, results were collated with [Afim-raw_multiqcSLURM.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-raw_multiqcSLURM.sh).
-Adapters were trimmed using [Afim_trimARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_trimARRAY.sh), which ran with the array input [Afim_trimARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_trimARRAY_input.txt).
-After these ran, quality was checked for individual trimmed fastqs with [Afim-trim_fastqcARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-trim_fastqcARRAY.sh), which ran with the array input [Afim-trim_fqcARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-trim_fqcARRAY_input.txt).
-After this script ran, results were collated with [Afim-trim_multiqcSLURM.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim-trim_multiqcSLURM.sh)
+Raw fastqs were quality-checked with FASTQC and multiQC. [Afim2-raw_fastqcARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2-raw_fastqcARRAY.sh) ran with the array input [Afim2-raw_fqcARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2-raw_fqcARRAY_input.txt).
+After this script ran, results were collated with [Afim2-raw_multiqcSLURM.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2-raw_multiqcSLURM.sh).
+Adapters were trimmed using [Afim2_trimARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_trimARRAY.sh), which ran with the array input [Afim2_trimARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2_trimARRAY_input.txt).
+After these ran, quality was checked for individual trimmed fastqs with [Afim2-trim_fastqcARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2-trim_fastqcARRAY.sh), which ran with the array input [Afim2-trim_fqcARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2-trim_fqcARRAY_input.txt).
+After this script ran, results were collated with [Afim2-trim_multiqcSLURM.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim2-trim_multiqcSLURM.sh)
 
 ### Alignment
 Trimmed fastqs were aligned to the reference genome, reads sorted, duplicates removed, and overlaps clipped with the single script [Afim_alignARRAY.sh](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_alignARRAY.sh) with the array input [Afim_alignARRAY_input.txt](https://github.com/letimm/sablefish_lcWGS/blob/main/scripts/Afim_alignARRAY_input.txt).

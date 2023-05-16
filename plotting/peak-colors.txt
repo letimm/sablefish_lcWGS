@@ -1,0 +1,4 @@
+sex	cluster	color
+female	female	maroon
+male	male	cadetblue
+unknown	unknown	grey

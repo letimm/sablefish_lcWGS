@@ -21,7 +21,7 @@ for(i in 1:length(packages_needed)){
 DATADIR <- "C:/Users/laura.timm/Desktop/Anoplopoma_fimbria/" 
 
 # Beagle file that you are interested in plotting the genotype matrix for
-beagle_file <- read.table(paste0(DATADIR, "chr17_peak/chr17.beagle"), header = TRUE)
+beagle_file <- read.table(paste0(DATADIR, "chr14_peak/chr14.beagle"), header = TRUE)
 
 # text file of a list of bamfiles that should match the order of your individuals in your beagle file
 BAM_LIST <- "Afim_filtered_bamslist.txt" 
@@ -32,13 +32,13 @@ SAMPLEMETADATA <- "sablefish_metadata.xlsx"
 # Population color and region file where "pop" is the first column and are the names of your 
 # different populations, "region" is your geographic region, and "color" are your plotting colors
 # for each pop
-POPMETADATA <- "chr17_peak/peak-colors.txt"
+POPMETADATA <- "chr14_peak/peak-colors.txt"
 
 # Out directory for your figures
-FIGOUT <- "C:/Users/laura.timm/Desktop/Anoplopoma_fimbria/chr17_peak/"
+FIGOUT <- "C:/Users/laura.timm/Desktop/Anoplopoma_fimbria/chr14_peak/"
 
 # Prefix for naming your figures 
-PREFIX <- "Afim_chr17peak"
+PREFIX <- "Afim_chr14peak"
 #################################################################################
 
 #################################################################################
@@ -129,7 +129,6 @@ colnames(plot.table) <- c("locus", "Ind", "value")
 ## Join your metadata with the new dataframe with genotype scores
 plot.table.meta <- left_join(plot.table, plotData, by = "Ind")
 plot.table.meta$value <- as.numeric(as.character(plot.table.meta$value))
-#plot.table.meta <- plot.table.meta[plot.table.meta$keep118 == 1,]
 
 ## Factor your locality column into the order you want them to plot in which is the order of your
 ## pop.factor.levels
